@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-//import "github.com/RobotStudio/choreo-msg/primitive/bool.proto";
 import "primitive/bool.proto";
 
 package choreo;
