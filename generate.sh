@@ -3,7 +3,9 @@
 svcs="./svc"
 builds="../build"
 
-includes="-I$HOME/src/go/github.com/RobotStudio/choreo-msg/msg -I."
+MSGHOME="$HOME/src/go/src/github.com/RobotStudio/choreo-msg/msg"
+
+includes="-I$MSGHOME -I."
 
 [ "$#" -gt 0 ] || { echo "Please specify a language"; exit 1; }
 
