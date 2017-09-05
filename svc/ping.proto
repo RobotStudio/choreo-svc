@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+//import "github.com/RobotStudio/choreo-msg/primitive/bool.proto";
+import "primitive/bool.proto";
+
+package choreo;
+
+service Ping {
+  rpc Ping(Bool) returns (Bool) {}
+}
