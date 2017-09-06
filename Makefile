@@ -10,7 +10,7 @@
 ROOT ?= ./svc
 
 # Choose the output directory
-OUTPUT ?= ./gens
+OUTPUT ?= ./build
 
 # Choose the target language.
 LANGUAGE ?= cpp
