@@ -29,7 +29,7 @@ PROTOC ?= protoc
 # NOTE: if "protoc" command is not in the PATH, you need to modify this file.
 #
 
-FLAGS+= --proto_path=.:$(PROTOINCLUDE)
+FLAGS+= --proto_path=$(ROOT):$(PROTOINCLUDE)
 FLAGS+= --$(LANGUAGE)_out=$(OUTPUT) --grpc_out=$(OUTPUT)
 FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)
 
