@@ -7,7 +7,7 @@
 #
 
 # Choose the root directory containing *.proto files
-ROOT ?= ./svc
+ROOT ?= ./src
 
 # Choose the output directory
 OUTPUT ?= ./build
