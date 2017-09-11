@@ -1,0 +1,40 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/RobotStudio/choreo-msg",
+			"repository": "https://github.com/RobotStudio/choreo-msg",
+			"vcs": "git",
+			"revision": "bb96ff059d019e747db97986a76c0bad54e7b9c8",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/golang/protobuf/proto",
+			"repository": "https://github.com/golang/protobuf",
+			"vcs": "git",
+			"revision": "17ce1425424ab154092bbb43af630bd647f3bb0d",
+			"branch": "master",
+			"path": "/proto",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/golang/protobuf/ptypes/any",
+			"repository": "https://github.com/golang/protobuf",
+			"vcs": "git",
+			"revision": "17ce1425424ab154092bbb43af630bd647f3bb0d",
+			"branch": "master",
+			"path": "ptypes/any",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/golang/protobuf/ptypes/timestamp",
+			"repository": "https://github.com/golang/protobuf",
+			"vcs": "git",
+			"revision": "17ce1425424ab154092bbb43af630bd647f3bb0d",
+			"branch": "master",
+			"path": "ptypes/timestamp",
+			"notests": true
+		}
+	]
+}
