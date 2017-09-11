@@ -14,7 +14,7 @@ package svc
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import _ "github.com/RobotStudio/choreo-msg/msg"
+import _ "github.com/RobotStudio/choreo-msg/msg/primitive"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
