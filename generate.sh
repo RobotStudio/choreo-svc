@@ -23,12 +23,12 @@ PROTOC="$(which protoc)"
 cd "$src" || { echo "Could not cd into $src"; exit 1; }
 
 [ -d "$builds" ] && rm -rf "$builds"
+mkdir -p "$builds"
 
 # Assemble lang params
 lang_opts=
 for lang in "${langs[@]}"; do
   lang_opts="$lang_opts --${lang}_out=$builds"
-  [ -d "${builds}/$lang" ] || mkdir -p "${builds}/$lang"
 done
 
 # Assemble include params
