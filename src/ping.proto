@@ -4,7 +4,7 @@ import "primitive/bool.proto";
 
 package choreo;
 
-option go_package = "github.com/RobotStudio/choreo-svc/svc;svc";
+option go_package = "github.com/RobotStudio/choreo-svc/svc;rs.choreo.svc";
 
 service Ping {
   rpc Ping(Bool) returns (Bool) {}
