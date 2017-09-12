@@ -85,11 +85,11 @@ void AddDescriptorsImpl() {
   static const char descriptor[] = {
       "\n\nping.proto\022\006choreo\032\024primitive/bool.pro"
       "to2,\n\004Ping\022$\n\004Ping\022\014.choreo.Bool\032\014.chore"
-      "o.Bool\"\000B+Z)github.com/RobotStudio/chore"
-      "o-svc/svc;svcb\006proto3"
+      "o.Bool\"\000B\'Z%github.com/RobotStudio/chore"
+      "o-svc/svcb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 141);
+      descriptor, 137);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "ping.proto", &protobuf_RegisterTypes);
   ::choreo::protobuf_primitive_2fbool_2eproto::AddDescriptors();

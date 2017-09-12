@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='ping.proto',
   package='choreo',
   syntax='proto3',
-  serialized_pb=_b('\n\nping.proto\x12\x06\x63horeo\x1a\x14primitive/bool.proto2,\n\x04Ping\x12$\n\x04Ping\x12\x0c.choreo.Bool\x1a\x0c.choreo.Bool\"\x00\x42+Z)github.com/RobotStudio/choreo-svc/svc;svcb\x06proto3')
+  serialized_pb=_b('\n\nping.proto\x12\x06\x63horeo\x1a\x14primitive/bool.proto2,\n\x04Ping\x12$\n\x04Ping\x12\x0c.choreo.Bool\x1a\x0c.choreo.Bool\"\x00\x42\'Z%github.com/RobotStudio/choreo-svc/svcb\x06proto3')
   ,
   dependencies=[primitive_dot_bool__pb2.DESCRIPTOR,])
 
@@ -30,5 +30,5 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('Z)github.com/RobotStudio/choreo-svc/svc;svc'))
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('Z%github.com/RobotStudio/choreo-svc/svc'))
 # @@protoc_insertion_point(module_scope)

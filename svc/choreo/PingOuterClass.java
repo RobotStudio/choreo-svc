@@ -25,8 +25,8 @@ public final class PingOuterClass {
     java.lang.String[] descriptorData = {
       "\n\nping.proto\022\006choreo\032\024primitive/bool.pro" +
       "to2,\n\004Ping\022$\n\004Ping\022\014.choreo.Bool\032\014.chore" +
-      "o.Bool\"\000B+Z)github.com/RobotStudio/chore" +
-      "o-svc/svc;svcb\006proto3"
+      "o.Bool\"\000B\'Z%github.com/RobotStudio/chore" +
+      "o-svc/svcb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
