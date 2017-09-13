@@ -8,6 +8,7 @@ import (
 	"flag"
 	"fmt"
 	"go/format"
+  "io/ioutil"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -25,11 +26,39 @@ Examples:
 ./genimpl -dir $GOPATH/src/github.com/RobotStudio/choreo-msg/msg
 `
 
-const msgSrc = "./vendor/github.com/RobotStudio/choreo-msg/src"
+const (
+  msgSrc = "./vendor/github.com/RobotStudio/choreo-msg/src"
+  template = "./tmpl/grpc.proto"
+)
 
 var (
 	flagSrcDir = flag.String("dir", "", "package source directory, useful for vendored code")
 )
+
+type Templates struct {
+  filename string
+  path string
+  Proto
+}
+
+type Proto struct {
+  Imports []string
+  Services []Service
+}
+
+type Service struct {
+  Rpcs []Rpc
+}
+
+type Rpc struct {
+  Call string
+  Params []Param
+  Res []Param
+}
+
+type Param struct {
+  Type string
+}
 
 // pbtypes returns the set of methods required to implement iface.
 func pbtypes(path string) ([]string, error) {
@@ -61,28 +90,19 @@ func pbtypes(path string) ([]string, error) {
 	return pbts, nil
 }
 
-const stub = "func ({{.Recv}}) {{.Name}}" +
-	"({{range .Params}}{{.Name}} {{.Type}}, {{end}})" +
-	"({{range .Res}}{{.Name}} {{.Type}}, {{end}})" +
-	"{\n" + "panic(\"not implemented\")" + "}\n\n"
 
-var tmpl = template.Must(template.New("test").Parse(stub))
+var tmpl = template.Must(template.New("test").ParseFiles(tmplate))
 
 // genStubs prints nicely formatted method stubs
 // for pbts using receiver expression recv.
 // If recv is not a valid receiver expression,
 // genStubs will panic.
-func genStubs(pbts []string) []byte {
+func genStubs(pbts []string) {
 	var buf bytes.Buffer
 	for _, pbt := range pbts {
-		tmpl.Execute(&buf, meth)
+    err := tmpl.ExecuteTemplate(&buf, pbt)
+    fatalIfErr(err)
 	}
-
-	pretty, err := format.Source(buf.Bytes())
-	if err != nil {
-		panic(err)
-	}
-	return pretty
 }
 
 func main() {
