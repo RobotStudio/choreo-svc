@@ -1,3 +1,4 @@
+// +build ignore
 // genimpl generates the choreo proto exchanges
 // Adapted from https://github.com/josharian/impl (thanks)
 
