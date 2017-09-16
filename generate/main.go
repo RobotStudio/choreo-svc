@@ -23,10 +23,7 @@ var (
     "src",
   )
 
-  files []string /*{
-    "primitive/bool.proto",
-  } */
-
+  files []string
 )
 
 func foundPath(path string, f os.FileInfo, err error) error {
