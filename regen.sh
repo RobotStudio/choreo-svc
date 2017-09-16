@@ -44,6 +44,8 @@ rm -rf vendor/${PKG}-msg
 
 go run regen.go -go_out "$root/src/$PKG-svc/vendor" -pkg_prefix "$PKG" "$protodir"
 
+go run ./generate/main.go -dir "$protodir"
+
 # Sanity check the build.
 warn "Checking that the libraries build..."
 go build -v ./...
