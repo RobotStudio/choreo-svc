@@ -3,9 +3,6 @@ package main
 
 import (
   "log"
-  "sync"
-  "time"
-
   "github.com/RobotStudio/choreo-svc/generate/parser"
   //"github.com/RobotStudio/choreo-svc/generate/generator"
 )
@@ -16,6 +13,8 @@ var files = []string{
 
 // main entrypoint
 func main() {
-  maxWorkers := 1
-  mts := parser.Run(maxWorkers, files)
+  maxWorkers := 2
+  log.Println("Launching...")
+  mts := parser.Run(maxWorkers, &files)
+  log.Println(mts)
 }
