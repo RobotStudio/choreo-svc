@@ -1,5 +1,5 @@
-// Uses the work package to generate/execute work
-package main
+// Go generator for service definitions
+package generate
 
 import (
   "log"

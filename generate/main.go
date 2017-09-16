@@ -6,15 +6,11 @@ import (
   "sync"
   "time"
 
-  "github.com/RobotStudio/choreo-svc/generate/work"
+  "github.com/RobotStudio/choreo-svc/generate"
 )
 
-var names = []string{
-  "steve",
-  "bob",
-  "mary",
-  "therese",
-  "jason",
+var files = []string{
+  "../../../../github.com/RobotStudio/choreo-msg/src/primitive/bool.proto",
 }
 
 // namePrinter provides special support for printing names
