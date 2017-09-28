@@ -18,9 +18,8 @@ func check(e error) {
   }
 }
 
-var mts = &msgTypes{
-  nameDepLookup: make(map[string][]string),
-}
+var mts = &msgTypes{}
+
 
 // fileParser type for work queue
 type fileParser struct {
@@ -41,9 +40,10 @@ func (f *fileParser) Task() {
   mts.add(f.parse())
 }
 
+
 // msgTypes is a collection of all msgType entities
 type msgTypes struct {
-  nameDepLookup map[string][]string
+  nameDepLookup sync.Map
   mts []*msgType
 }
 
@@ -54,12 +54,14 @@ func (m *msgTypes) add(mts *[]msgType) {
   }
 }
 
+
 // msgType provides support for generation
 type msgType struct {
   name string
   path string
   deps []string
 }
+
 
 func parseFileContents(dat *[]byte, fname *string) *[]msgType {
   var mss []msgType
@@ -89,8 +91,14 @@ func parseFileContents(dat *[]byte, fname *string) *[]msgType {
       thisMsgType = msgType{}
       inMsgDef = false
     } else if inMsgDef && s.Column == 3 && s.TokenText() != "repeated" {
-      mts.nameDepLookup[thisMsgType.name] =
-        append(mts.nameDepLookup[thisMsgType.name], s.TokenText())
+      if m, ok := mts.nameDepLookup.Load(thisMsgType.name); ok {
+        t := m.(sync.Map)
+        t.Store(s.TokenText(), true)
+      } else {
+        t := sync.Map{}
+        t.Store(s.TokenText(), true)
+        mts.nameDepLookup.Store(thisMsgType.name, t)
+      }
     }
   }
 
@@ -105,14 +113,17 @@ func Run(maxWorkers int, root string, files *[]string) *msgTypes {
   var wg sync.WaitGroup
   wg.Add(len(*files))
 
+  log.Println(*files)
+
   // Iterate over the slice of names
-  for _, file := range *files {
-    go func(f *string) {
+  for i,_ := range *files {
+    f := (*files)[i]
+    go func() {
       // Submit the task to be worked on. When RunTask returns we know it is
       // being handled.
-      q.Run(&fileParser{filename: f, root: root})
+      q.Run(&fileParser{filename: &f, root: root})
       wg.Done()
-    }(&file)
+    }()
   }
 
   wg.Wait()

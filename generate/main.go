@@ -24,14 +24,28 @@ var (
   )
 
   files []string
+  flookup = make(map[string]bool)
 )
 
 func foundPath(path string, f os.FileInfo, err error) error {
+  if err != nil {
+    panic(err)
+  }
+
   rpath, err := filepath.Rel(*flagSrcDir, path)
+  if err != nil {
+    panic(err)
+  }
+
   if !f.IsDir() && strings.HasSuffix(rpath, ".proto") {
     log.Printf("Found %s", rpath)
-    files = append(files, rpath)
+    // if path isn't in list, add it
+    if _, ok := flookup[rpath]; !ok {
+      flookup[rpath] = true
+      files = append(files, rpath)
+    }
   }
+
   return nil
 }
 
@@ -42,6 +56,8 @@ func main() {
     if dir, err := os.Getwd(); err == nil {
       dir = filepath.Join(dir, root)
       *flagSrcDir = dir
+    } else {
+      panic(err)
     }
   }
 
@@ -52,6 +68,5 @@ func main() {
 
   maxWorkers := 2
   log.Println("Launching...")
-  mts := parser.Run(maxWorkers, *flagSrcDir, &files)
-  log.Println(mts)
+  parser.Run(maxWorkers, *flagSrcDir, &files)
 }
